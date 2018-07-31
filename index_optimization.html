@@ -72,6 +72,16 @@
                 .siblings('.red').removeClass('red')
             }, 1000)
         })
+        $('#buttons').on('mouseenter',function(){
+            window.clearInterval(timerId)
+        })
+        $('#buttons').on('mouseleave',function(){
+            timerId = setInterval(function () {
+            n = n + 1
+            allButtons.eq(n % size).trigger('click').addClass('red')
+                .siblings('.red').removeClass('red')
+            }, 1000)
+        })
     </script>
 </body>
 
