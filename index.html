@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery demo</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .images{
+            display: flex;
+            align-items: flex-start;
+            /* border: 1px solid red; */
+            transition: transform 0.5s;
+        }
+        .window{
+            width: 300px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="images" id="images">
+            <img src="./images/dog1.jpg" width=300px alt="">
+            <img src="./images/dog2.jpg" width=300px alt="">
+            <img src="./images/dog3.jpg" width=300px alt="">
+        </div>
+    </div>
+    <button id="p1">第1张</button>
+    <button id="p2">第2张</button>
+    <button id="p3">第3张</button>
+    
+    <script>
+        
+        $('#p1').on('click',function(){
+            $('#images').css({
+                transform:'translateX(0)'
+            })
+        })
+        $('#p2').on('click',function(){
+            $('#images').css({
+                transform:'translateX(-300px)'
+            })
+        })
+        $('#p3').on('click',function(){
+            $('#images').css({
+                transform:'translateX(-600px)'
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery demo</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .images {
+            display: flex;
+            align-items: flex-start;
+            /* border: 1px solid red; */
+            transition: transform 0.5s;
+        }
+
+        .window {
+            width: 300px;
+            overflow: hidden;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window">
+        <div class="images" id="images">
+            <img src="./images/dog1.jpg" width=300px alt="">
+            <img src="./images/dog2.jpg" width=300px alt="">
+            <img src="./images/dog3.jpg" width=300px alt="">
+        </div>
+    </div>
+    <span id="buttons">
+        <button>第1张</button>
+        <button>第2张</button>
+        <button>第3张</button>
+    </span>
+    <script>
+        var allButtons = $('#buttons > button')
+        for (let i = 0; i < allButtons.length; i++) {
+            $(allButtons[i]).on('click', function (x) {
+                var index = $(x.currentTarget).index()
+
+                var p = index * -300
+                $('#images').css({
+                    transform: 'translate(' + p + 'px)'
+                })
+                n = index
+                allButtons.eq(n).addClass('red')
+                .siblings('.red').removeClass('red')
+            })
+        }
+        // 自动播放
+        var n = 0
+        var size = allButtons.length
+        var timerId = setInterval(function () {
+            n = n + 1
+            allButtons.eq(n % size).trigger('click').addClass('red')
+                .siblings('.red').removeClass('red')
+        }, 1000)
+        $('.window').on('mouseenter',function(){
+            window.clearInterval(timerId)
+        })
+        $('.window').on('mouseleave',function(){
+            timerId = setInterval(function () {
+            n = n + 1
+            allButtons.eq(n % size).trigger('click').addClass('red')
+                .siblings('.red').removeClass('red')
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>
